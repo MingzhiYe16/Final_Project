@@ -74,7 +74,7 @@ figure1<-data_s1 %>% plot_ly(x = ~date, y = ~concentration, color=~year, type = 
         text = ~paste(paste("date: ", date, sep=""),
                       paste("Concentration of SO2: ", concentration, sep=""),
                       paste("Year: ", year, sep=""), sep = "<br>")) %>%
-  layout(title = "Average concentration of SO2 in 2018 and previous years",
+  layout(title = "Concentration in 2018 and average concentration in previous years",
                   yaxis = list(title = "Average concentration of SO2"), xaxis = list(title = "date"),
          hovermode = "compare")
 
@@ -85,7 +85,7 @@ data_s_date<-data_s_ori %>%
 data_s_date<-as.data.frame(data_s_date)
 gg <- ggplot(data_s_date, aes(date, concentration)) +
   geom_point(aes(frame = year,size=10))+
-  labs(title="Concentration of SO2 in CA from 2013 to 2018", y="Concentration of SO2",x="Date")
+  labs(title="Concentration of SO2 in each year from 2013 to 2018", y="Concentration of SO2",x="Date")
 figure2 <-ggplotly(gg)
 
 ```
@@ -207,7 +207,9 @@ fig1
 
 # 4. Relationship between the distance to the center of the fire and the multiple of the change in concentration of SO2
 
-The figure below displays how many times the concentration of SO2 of each county in 2018 is higher than that in previous years. The bigger the size of the circle, the bigger the times. The figure also shows how far the county is from the center of the fire. We can see that in general the closer the county is to the center of the fire, the higher the concentration of SO2.
+The figure below displays how many times the concentration of SO2 of each county in 2018 is higher than that in previous years. The bigger the size of the circle, the bigger the times. The figure also shows how far the county is from the center of the fire. 
+
+We can see that in general the closer the county is to the center of the fire, the greater the multiple of the change in concentration of SO2.
 
 ```{r}
 # One degree of longitude is around 90km in CA, one degree of latitude is around 111km in CA
@@ -235,9 +237,9 @@ data_sx %>%
                   yaxis = list(title = "Times"), xaxis = list(title = "Distance"))
 ```
 
-# 5. The multiple of the actual concentration in 2018 to the predicted concentration in 2018 in each county., and its relationship with the distance to the center of the fire
+# 5. The multiple of the actual concentration in 2018 to the predicted concentration in 2018 in each county, and its relationship with the distance to the center of the fire
 
-I use the concentration data in previous years(2013-2017) in each counties to build linear models and predict the estimated concentration in 2018 when there was no Camp Fire in each counties. Then I calculated the multiple of the actual concentration in 2018 to the predicted concentration in 2018 in each county. 
+I use the concentration data in previous years(2013-2017) in each counties to build linear models and predict the estimated concentration in 2018 when there was no Camp Fire. Then I calculated the multiple of the actual concentration in 2018 to the predicted concentration in 2018 in each county. 
 
 The figure below displays the relationship between the multiple and the distance from the county to the center of the fire. The bigger the size of the circle, the bigger the multiple.
 
