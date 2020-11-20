@@ -1,5 +1,5 @@
 ---
-title: "PM566 Final Project"
+title: "Influence of the Camp Fire in 2018 on the concentration of SO2"
 author: "Mingzhi Ye"
 output: 
     html_document:
@@ -9,7 +9,7 @@ output:
 
 <br>
 
-Welcome my PM566 assignment5 website. There are some interactive figures displaying how did the concentration of SO2 in CA change because of the Camp Fire in 2018.
+Welcome to my PM566 Final Project website. Here are some interactive figures displaying how did the concentration of SO2 in CA change because of the Camp Fire in 2018.
 
 <br>
 
@@ -85,7 +85,8 @@ data_s_date<-data_s_ori %>%
 data_s_date<-as.data.frame(data_s_date)
 gg <- ggplot(data_s_date, aes(date, concentration)) +
   geom_point(aes(frame = year,size=10))+
-  labs(title="Concentration of SO2 in each year from 2013 to 2018", y="Concentration of SO2",x="Date")
+  labs(title="Concentration of SO2 in each year from 2013 to 2018", y="Concentration of SO2",x="Date")+
+  theme(axis.text.x = element_text(angle = 90))
 figure2 <-ggplotly(gg)
 
 ```
@@ -206,11 +207,11 @@ fig1
 
 # 4. Relationship between the square of the distance to the center of the fire and the increase in concentration of SO2
 
-The figure below displays how much the concentration of SO2 of each county in 2018 is higher than that in previous years. The bigger the size of the circle, the more the increase . The figure also shows the square of the distance from the county to the center of the fire. 
+The figure below displays how much the concentration of SO2 of each county in 2018 is higher than that in previous years. The bigger the size of the circle, the more the increase. The figure also shows the square of the distance from the county to the center of the fire. 
 
 We can see that in general the closer the county is to the center of the fire, the greater the increase in concentration of SO2. 
 
-I also tested whether there is a linear relationship between the square of the distance and the increase in concentration, and the resullt is that there is no significant linear relationship(p-value = 0.06512)
+I also tested whether there is a linear relationship between the square of the distance and the increase in concentration, and the result is that there is no significant linear relationship(p-value = 0.06512)
 
 ```{r}
 # One degree of longitude is around 90km in CA, one degree of latitude is around 111km in CA
@@ -247,7 +248,7 @@ I use the concentration data in previous years(2013-2017) in each counties to bu
 
 The figure below displays the relationship between the increase and the square of the distance from the county to the center of the fire. The bigger the size of the circle, the greater the increase.
 
-I also tested whether there is a linear relationship between the square of the distance and the increase in concentration, and the resullt is that there is no significant linear relationship(p-value = 0.08821)
+I also tested whether there is a linear relationship between the square of the distance and the increase in concentration, and the result is that there is no significant linear relationship(p-value = 0.08821)
 
 ```{r}
 data_s_ori1<-data_s_ori %>%
@@ -285,7 +286,7 @@ data_compare %>%
           size = ~increase , sizes = c(20, 70), marker = list(sizemode='diameter', opacity=0.5),
           hoverinfo = 'text',
           text = ~paste( paste(county, ":", sep=""), paste(" Distance from the center of the fire: ", round(distance,2)," KM", sep="") , paste(" The actual concentration of SO2 in 2018 is ", round(increase ,2)," ppb higher than the predicted concentration", sep=""), sep = "<br>")) %>% 
-  layout(title = "The increase of the actual concentration in 2018 compared to the predicted concentration in 2018",
+  layout(title = "The increase of the actual concentration compared to the predicted concentration",
                   yaxis = list(title = "Increase"), xaxis = list(title = "Square of Distance"))
 model5<-lm(increase~square_of_distance,data=data_compare)
 summary(model5)
