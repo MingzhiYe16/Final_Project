@@ -7,7 +7,7 @@ navbar:
       href: index.html
   right:
     - text: "Source code"
-      href: https://github.com/MingzhiYe16/Final_Project
+      href: https://github.com/MingzhiYe16/Final_Project/tree/master/Source_code
     - text: "Report"
       href: https://github.com/MingzhiYe16/Final_Project/blob/master/Final%20Project%20Report.pdf
 output:
